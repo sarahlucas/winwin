@@ -9,10 +9,10 @@ import urllib
 import simplejson
 import twitter
 
-consumer_key = 'Y6dSH82jVCQvVzrkjk3JQ'
-consumer_secret = '4XykXa3D2eqk6pTI8UDUKgjt3GBEV3GYqaKuFe0jD2A'
-access_token_key = '983701741-kX9UNcOHw5nY2eDoW0vOJQdVRYtI6dwd2bzASCoD'
-access_token_secret = 'eZyBJ5xSBrEZio3NX3Rf99wMlTWJheIhEezPu7BQ4s'
+consumer_key = 'pUT2bMKp4FvRYsmnd3ltjL3F3'
+consumer_secret = 'DlMJi9gQQoACknh2QQiVZLtF2R5t6KM700k9SBV6zfB4FgIq2N'
+access_token_key = '382811711-j0hkveej8kWWSUXuHta7GgSZMyPMGj2Tcn392nqx'
+access_token_secret = 'npLdv4TMTppd1HbPfVGZTzO8cYM9KH3rsjPeh31hhxISL'
 
 def searchTweets(query):
 	search = urllib.urlopen("http://search.twitter.com/search.json?q="+query)
@@ -20,12 +20,12 @@ def searchTweets(query):
 	return dict
 
 api = twitter.Api(consumer_key = consumer_key, consumer_secret = consumer_secret, access_token_key = access_token_key, access_token_secret = access_token_secret)
-tweets = searchTweets("christmas+gift+ideas&rpp=100&result_type=recent")
-msg = 'Internet neighbor! Saw your tweet - here are my Xmas gift ideas! Him: http://amzn.to/TDjghP Her: http://amzn.to/TEWDbY'
+tweets = searchTweets("retweet+win&rpp=100&result_type=recent")
+
 
 for i in range(len(tweets["results"])):
 	tweeter = tweets["results"][i]["from_user"]
 	status = twitter.Api.GetStatus(api, tweets["results"][i]["id"])
 	api.CreateFavorite(status)
 	api.CreateFriendship(tweeter)
-	api.PostUpdate('@' + tweeter + ' ' + msg)
+	
